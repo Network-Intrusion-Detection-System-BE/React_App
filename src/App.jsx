@@ -4,6 +4,7 @@ import Navbar from "./Components/Navbar";
 import HomePage from "./Components/HomePage";
 import { Route, Router, Routes } from "react-router-dom";
 import Result from "./Components/Result";
+import ContextTesting from "./Components/ContextTesting";
 
 function App() {
   return (

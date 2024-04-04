@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 
-const Result = () => {
+const Result = ({output}) => {
   const { data, isLoading } = useFetch("sample");
 
   const [found, setFound] = useState(false);

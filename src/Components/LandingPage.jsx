@@ -4,7 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 function LandingPage() {
   const [pcapFile, setPcapFile] = useState(null);
-  const nav = useNavigate()
+
+  const [data, setData] = useState([]);
+
+  const nav = useNavigate();
 
   const handlePcapUpload = (event) => {
     const file = event.target.files[0];
@@ -12,16 +15,23 @@ function LandingPage() {
   };
 
   const handleAnalyzePcap = () => {
-    // Implement logic to analyze uploaded PCAP file using your NIDS library
-    axios.post('http://localhost:8000/scanPCAP')
-    .then(x => console.log(x))
-    // nav('/results')
+    const formdata = new FormData();
+    formdata.append("file", pcapFile);
+
+    axios.post('http://localhost:8000/scan', formdata, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    })
+    .then(x => console.log(`Doneeeeee!!!`))
+    .catch(err => console.log(err))
+
   };
 
   const handleLiveTrafficAnalysis = () => {
     // Implement logic to start live network traffic analysis using your NIDS library
     console.log("Starting live traffic analysis");
-    nav('/results')
+    nav("/results");
   };
 
   return (
